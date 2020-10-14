@@ -16,7 +16,7 @@
             <li class="nav-item">
                 <a href="{{route('dashboard.dashboard')}}" class="nav-link " href="JavaScript:void(0)">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>Disburshment
+                    <p>Dashboard
                   </p>
                 </a>
             </li>
