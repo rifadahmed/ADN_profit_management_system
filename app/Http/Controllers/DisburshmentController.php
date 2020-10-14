@@ -39,6 +39,7 @@ class DisburshmentController extends Controller
         $disburshment->shareholder_id=$request->shareholder_id;
         $disburshment->amount=$request->amount;
         $disburshment->date=$request->date;
+        $disburshment->remark=$request->remark;
         $disburshment->created_by = Auth::User()->name;
         $disburshment->save();
         return redirect()->route('disburshment.index');
@@ -64,6 +65,7 @@ class DisburshmentController extends Controller
         $disburshment= Disburshment::find($id);
         $disburshment->amount = $request->amount;
         $disburshment->date = $request->date;
+        $disburshment->remark=$request->remark;
         $disburshment->shareholder_id = $request->shareholder_id;
         $disburshment->updated_by = Auth::User()->name;
 
