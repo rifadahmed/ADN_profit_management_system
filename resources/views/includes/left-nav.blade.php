@@ -10,27 +10,21 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          {{--<img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">--}}
-        </div>
-        <div class="info">
-          <a href="{{route('dashboard.dashboard')}}" class="d-block">{{Auth::user()->name}}</a>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+            <li class="nav-item">
+                <a href="{{route('dashboard.dashboard')}}" class="nav-link " href="JavaScript:void(0)">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>Disburshment
+                  </p>
+                </a>
+            </li>
+
 
             <li class="nav-item @if(Request::segment(1) == 'disburshment' && Request::segment(2)=='index' ||Request::segment(1) == 'disburshment' && Request::segment(2)=='create' ||Request::segment(1) == 'disburshment' && Request::segment(2)=='edit' ) menu-open @endif bold">
-
-
             <a href="#" class="nav-link " href="JavaScript:void(0)">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-dollar-sign"></i>
               <p>Disburshment
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -69,9 +63,9 @@
              </ul>
          </li>--}}
 
-          <li class="nav-item has-treeview ">
+          <li class="nav-item has-treeview @if(Request::segment(1) == 'project' && Request::segment(2)=='index' ||Request::segment(1) == 'project' && Request::segment(2)=='create' ||Request::segment(1) == 'project' && Request::segment(2)=='edit' ) menu-open @endif bold ">
             <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-money-check"></i>
+              <i class="nav-icon fas fa-tasks"></i>
               <p>
                 Project
                 <i class="right fas fa-angle-left"></i>
@@ -93,7 +87,7 @@
             </ul>
           </li>
 
-        <li class="nav-item has-treeview ">
+        <li class="nav-item has-treeview @if(Request::segment(1) == 'user' && Request::segment(2)=='index' ||Request::segment(1) == 'user' && Request::segment(2)=='create' ||Request::segment(1) == 'user' && Request::segment(2)=='edit' ) menu-open @endif bold">
           <a href="#" class="nav-link ">
             <i class="nav-icon fas fa-users"></i>
             <p>

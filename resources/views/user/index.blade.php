@@ -7,17 +7,6 @@
   <!-- DataTables -->
   <link rel="stylesheet" href=" {{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href=" {{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-<!-- <style>
-  table.dataTable thead>tr>th.sorting_asc,
-  table.dataTable thead>tr>th.sorting_desc,
-  table.dataTable thead>tr>th.sorting,
-  table.dataTable thead>tr>td.sorting_asc,
-  table.dataTable thead>tr>td.sorting_desc,
-   table.dataTable thead>tr>td.sorting {
-    padding-right: 16px !important;
-    padding-left: 7px;
-}
-</style> -->
 @endpush
 
 <!-- BEGIN: Page Main-->
@@ -31,7 +20,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Dashboard</a></li>
               <li class="breadcrumb-item active">{{ isset($title) ? $title : "Title Not Found" }}</li>
             </ol>
           </div>
@@ -58,7 +47,7 @@
                     <th>Total Receivable</th>
                     <th>Total Paid</th>
                     <th>Created By</th>
-                    <th>Updated By</th>
+                    <th>Last Updated By</th>
                     <th>Action</th>
                   </tr>
                   </thead>

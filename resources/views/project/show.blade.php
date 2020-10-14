@@ -11,7 +11,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Dashboard</a></li>
               <li class="breadcrumb-item active">Project Details</li>
             </ol>
           </div>
@@ -100,7 +100,7 @@
                       </li>
 
 
-                      
+
                       <li class="list-group-item">
                         <b> Created By:</b> <a class="float-right"> {{$project['created_by'] }}</a>
                       </li>
@@ -140,7 +140,7 @@
                             <td>{{$shareholder->shareholder_name->name}}</td>
                             <td>{{$shareholder->amount}}</td>
                             <td>{{$shareholder->share_percentage}} %</td>
-            
+
                           </tr>
                         @endforeach
                     @endif

@@ -21,7 +21,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Dashboard</a></li>
               <li class="breadcrumb-item active">{{ isset($title) ? $title : "Title Not Found" }}</li>
             </ol>
           </div>
@@ -51,7 +51,7 @@
 
                     @foreach ($financials as $financial)
                     <tr>
-                     
+
                       <td>{{$serial++}}</td>
                       <td> <a href="{{route('project.show', $financial->lc_number->id)}}">{{$financial->lc_number->lc_number}}</a> </td>
                       <td>{{$financial->shareholder_name->name}}</td>
@@ -59,7 +59,7 @@
                       <td>{{$financial->amount}}</td>
                   </tr>
                     @endforeach
-                  
+
 
                   </tbody>
 
@@ -72,7 +72,7 @@
               {!! $financials->links() !!}
              </div>
           </div>
-          
+
           <!-- /.col -->
         </div>
         <!-- /.row -->
