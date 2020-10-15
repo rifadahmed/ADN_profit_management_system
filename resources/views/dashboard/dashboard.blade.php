@@ -5,13 +5,7 @@
 
 
 @push('css')
-      <link rel="stylesheet" href="{{asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
-      <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-      <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}">
-      <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-      <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
-      <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
-      <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
 @endpush
     <!-- /.content-header -->
     <!-- Content Header (Page header) -->
@@ -83,11 +77,11 @@
           <div class="col-lg-3 col-6">
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{$total_project}}<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$totalAmount - $totalGet }}<sup style="font-size: 20px"></sup></h3>
                 <p>Outstanding</p>
               </div>
               <div class="icon">
-                <i class="fas fa-tasks"></i>
+                <i class="fab fa-bitcoin"></i>
               </div>
               <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>

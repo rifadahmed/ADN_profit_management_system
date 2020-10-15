@@ -13,7 +13,8 @@ class UserController extends Controller
     public function index()
     {
 
-        $users=User::all();
+        $users = User::where('user_role', 'shareholder')->get();
+
         foreach($users as $user)
         {
             $user->total_receivable= User::find($user->id)->total_receivable->sum('amount');
@@ -23,8 +24,7 @@ class UserController extends Controller
         $data['title']="List of Shareholders";
         //$users = $users->orderBy('id', 'DESC')->paginate(10);
         $data['users']=$users;
-        $data['serial']    = 1;
-
+        $data['serial'] = 1;
 
         return view('user.index',$data);
     }
@@ -42,14 +42,12 @@ class UserController extends Controller
             'email'=>'required|unique:users',
             'password'=>'min:6|required_with:confirm_password|same:confirm_password',
             'confirm_password'=>'min:6',
-            'share'=>'required|regex:/^\d+(\.\d{1,2})?$/',
-            'total_share'=>'required|regex:/^\d+(\.\d{1,2})?$/',
+            'share'=>'required|regex:/^\d+(\.\d{1,2})?$/'
         ]);
 
         $user= new User();
         $user->name=$request->name;
         $user->share=$request->share;
-        $user->total_share=$request->total_share;
         $user->email=$request->email;
         $user->password=Hash::make($request->password);
         $user->created_by = Auth::User()->name;

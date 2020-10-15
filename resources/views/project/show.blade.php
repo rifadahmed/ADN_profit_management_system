@@ -54,7 +54,7 @@
                         <b> Lc value:</b> <a class="float-right"> {{$project['lc_value']}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Lc value:</b> <a class="float-right"> {{$project['forward_lc_value']}}</a>
+                        <b> Forward Lc value:</b> <a class="float-right"> {{$project['forward_lc_value']}}</a>
                       </li>
                       <li class="list-group-item">
                         <b> Total Profit Margin:</b> <a class="float-right"> {{$project['total_profit_margin']}}</a>
@@ -99,8 +99,6 @@
                         <b> Profit Share Outstanding:</b> <a class="float-right"> {{$project['profit_share_outstanding']}}</a>
                       </li>
 
-
-
                       <li class="list-group-item">
                         <b> Created By:</b> <a class="float-right"> {{$project['created_by'] }}</a>
                       </li>
@@ -114,9 +112,6 @@
                         <b> Updated At:</b> <a class="float-right"> {{$project['updated_at']}}</a>
                       </li>
 
-
-
-
                     </ul>
                     <a href="{{route('project.index')}}" class="btn btn-primary btn-block align-center">Go back</a>
                   </div>
@@ -129,7 +124,7 @@
                   <tr>
                     <th>Name</th>
                     <th>Amount</th>
-                    <th>Total Share</th>
+                    <th>Share / Total Share</th>
 
                   </tr>
                   </thead>
@@ -139,7 +134,7 @@
                           <tr>
                             <td>{{$shareholder->shareholder_name->name}}</td>
                             <td>{{$shareholder->amount}}</td>
-                            <td>{{$shareholder->share_percentage}} %</td>
+                            <td>{{$shareholder->each_person_share->share}} / {{$total_share}}</td>
 
                           </tr>
                         @endforeach

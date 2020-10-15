@@ -18,4 +18,7 @@ class Financial extends Model
     public function total_amount(){
         return $this->belongsTo('App\Models\User','shareholder_id');
     }
+    public function each_person_share(){
+        return $this->belongsTo('App\Models\User','shareholder_id');
+    }
 }
