@@ -11,10 +11,10 @@ class DisburshmentController extends Controller
 {
     public function index()
     {
-         $data['title']="List of Disburshment";
-         $data['disburshments']=Disburshment::all();
+        $data['title']="List of Disburshment";
+        $data['disburshments']=Disburshment::all();
 
-         $disburshments = New Disburshment();
+        $disburshments = New Disburshment();
         $disburshments = $disburshments->orderBy('id', 'DESC')->simplePaginate(5);
         $data['disburshments']=$disburshments;
         $data['serial']    = 1;
@@ -39,6 +39,7 @@ class DisburshmentController extends Controller
         $disburshment->shareholder_id=$request->shareholder_id;
         $disburshment->amount=$request->amount;
         $disburshment->date=$request->date;
+        $disburshment->remark=$request->remark;
         $disburshment->created_by = Auth::User()->name;
         $disburshment->save();
         return redirect()->route('disburshment.index');
@@ -64,6 +65,7 @@ class DisburshmentController extends Controller
         $disburshment= Disburshment::find($id);
         $disburshment->amount = $request->amount;
         $disburshment->date = $request->date;
+        $disburshment->remark=$request->remark;
         $disburshment->shareholder_id = $request->shareholder_id;
         $disburshment->updated_by = Auth::User()->name;
 

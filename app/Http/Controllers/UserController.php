@@ -12,23 +12,23 @@ class UserController extends Controller
 {
     public function index()
     {
-        
 
 
-        
-        
+
+
+
         $users=User::all();
         foreach($users as $user)
         {
             $user->total_receivable= User::find($user->id)->total_receivable->sum('amount');
             $user->total_paid=User::find($user->id)->total_paid->sum('amount');
         }
-        
+
         $data['title']="List of Shareholders";
         //$users = $users->orderBy('id', 'DESC')->paginate(10);
         $data['users']=$users;
         $data['serial']    = 1;
-        
+
 
         return view('user.index',$data);
     }
@@ -47,6 +47,7 @@ class UserController extends Controller
             'password'=>'min:6|required_with:confirm_password|same:confirm_password',
             'confirm_password'=>'min:6',
             'share'=>'required|regex:/^\d+(\.\d{1,2})?$/',
+            'total_share'=>'required|regex:/^\d+(\.\d{1,2})?$/',
         ]);
 
         $user= new User();

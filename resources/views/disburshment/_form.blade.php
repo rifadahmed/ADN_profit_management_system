@@ -1,7 +1,7 @@
 <div class="card-body">
     <div class="row">
       <div class="form-group col-md-6">
-         <label for="">Shareholder Name</label>
+         <label for="">Shareholder Name *</label>
          <select class="form-control" name="shareholder_id" id="buyer_type_id" >
             <option value="" disabled selected> - Select Shareholder - </option>
             @foreach ($shareholders as $shareholder)
@@ -10,12 +10,16 @@
         </select>
       </div>
       <div class="form-group col-md-6">
-        <label for="">Amount @if ($errors->has('amount')) <small class="red-text"> [ {{ $errors->first('amount') }} ] </small>@endif</label>
+        <label for="">Amount * @if ($errors->has('amount')) <small class="text-danger"> [ {{ $errors->first('amount') }} ] </small>@endif</label>
         <input type="text" name="amount" class="form-control" id="amount" placeholder="Enter Amount" required value="{{ old('amount',isset($data) ? $data->amount : null ) }}">
       </div>
       <div class="form-group col-md-6">
-        <label for="">Date</label>
+        <label for="">Date *</label>
         <input type="date" name="date" class="form-control" id="date" placeholder="Enter date" required value="{{ old('date',isset($data) ? $data->date :null) }}">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="">Remark *</label>
+        <input type="remark" name="remark" class="form-control" id="remark" placeholder="Voucher,cheque number" required value="{{ old('remark',isset($data) ? $data->remark :null) }}">
       </div>
   </div>
 </div>

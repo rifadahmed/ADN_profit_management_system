@@ -17,7 +17,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Dashboard</a></li>
               <li class="breadcrumb-item active">Create New Project</li>
             </ol>
           </div>

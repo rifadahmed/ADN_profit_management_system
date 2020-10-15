@@ -24,7 +24,7 @@ class ProjectController extends Controller
         $data['title']="List of projects";
 
         $projects = New Project();
-        $projects = $projects->orderBy('id', 'DESC')->get();
+        $projects = $projects->orderBy('id', 'DESC')->simplePaginate(2);
         $data['projects']=$projects;
         $data['serial']    = 1;
         return view('project.index',$data);
@@ -36,6 +36,7 @@ class ProjectController extends Controller
     }
 
     public function store(Request $request){
+
         $validateData = $request->validate([
             'lc_or_tt_date' => 'required',
             'style_number_and_order_session' => 'required',
@@ -124,6 +125,7 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id){
 
+         
                 $validateData = $request->validate([
                     'lc_or_tt_date' => 'required',
                     'style_number_and_order_session' => 'required',
@@ -171,7 +173,15 @@ class ProjectController extends Controller
 
 
                 $post->save();
-                return redirect('/project/index');
+
+
+                $shareholders=Financial::where('project_id',$id)->get();
+                foreach($shareholders as $shareholder){
+                    $shareholder->amount=($request->profits_shared_with_shareholders/$shareholder->total_amount->total_share)*$shareholder->total_amount->share;
+                    $shareholder->share_percentage=((($request->profits_shared_with_shareholders/$shareholder->total_amount->total_share)*$shareholder->total_amount->share)*100)/$request->profits_shared_with_shareholders;
+                    $shareholder->save();
+                }
+               return redirect('/project/index');
 
     }
 

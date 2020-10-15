@@ -10,7 +10,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Dashboard</a></li>
               <li class="breadcrumb-item active">Disburshment details  </li>
             </ol>
           </div>
@@ -34,7 +34,7 @@
                        alt="User profile picture"> -->
                 </div>
 
-                <h3 class="profile-username text-center">{{$disburshment->shareholder->name}}</h3>
+                <h3 class="profile-username text-center"><strong>{{$disburshment->shareholder->name}}</strong></h3>
 
                 <p class="text-muted text-center">Shareholder</p>
 

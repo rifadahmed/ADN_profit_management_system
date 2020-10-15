@@ -8,17 +8,6 @@
     <link rel="stylesheet" href=" {{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href=" {{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 
-    <style>
-    table.dataTable thead>tr>th.sorting_asc,
-    table.dataTable thead>tr>th.sorting_desc,
-    table.dataTable thead>tr>th.sorting,
-    table.dataTable thead>tr>td.sorting_asc,
-    table.dataTable thead>tr>td.sorting_desc,
-    table.dataTable thead>tr>td.sorting {
-        padding-right: 16px !important;
-        padding-left: 6px;
-    }
-    </style>
 @endpush
 
     <!-- Content Header (Page header) -->
@@ -30,7 +19,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Dashboard</a></li>
               <li class="breadcrumb-item active">{{ isset($title) ? $title : "Title Not Found" }}</li>
             </ol>
           </div>
@@ -46,7 +35,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="" class="table table-bordered ">
                   <thead>
                   <tr>
                     <th>Serial</th>
@@ -65,7 +54,7 @@
                           <tr>
                             <td>{{$serial++}}</td>
                             <td>{{$eachProject['lc_or_tt_date']}}</td>
-                            <td>{{$eachProject['style_number_and_order_session']}}</td>                     
+                            <td>{{$eachProject['style_number_and_order_session']}}</td>
                             <td>{{$eachProject['profits_shared_with_shareholders']}}</td>
                             <td>{{$eachProject['total_profit_margin']}}</td>
                             <td>{{$eachProject['created_by'] ?$eachProject['created_by'] : "-----"}}</td>
@@ -82,28 +71,13 @@
                 </table>
               </div>
             </div>
+            <div class="text-center">{{$projects->render()}}</div>
         </div>
       </div>
+
+
     </section>
 
-
-  <div id="delete-modal" class="modal">
-    <div class="modal-content">
-      <h4>Delete Client</h4>
-      <p>Are Sure To Delete This Clients From your List</p>
-    </div>
-    <div class="modal-footer">
-
-        <form method="post" action="#">
-          {{@csrf_field()}}
-          {{method_field('delete')}}
-          <input type="hidden" id="id" name="id" name="_method" value="" />
-          <a href="#!"  class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
-          <button type="submit" class="modal-action btn modal-close waves-effect waves-green btn-flat ">Agree</button>
-        </form>
-
-    </div>
-  </div>
 
 
   @push('script')
