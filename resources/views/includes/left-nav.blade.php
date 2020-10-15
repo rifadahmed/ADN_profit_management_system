@@ -111,6 +111,24 @@
           </ul>
         </li>
 
+        <li class="nav-item has-treeview @if(Request::segment(1) == 'user' && Request::segment(2)=='index' ||Request::segment(1) == 'user' && Request::segment(2)=='create' ||Request::segment(1) == 'user' && Request::segment(2)=='edit' ) menu-open @endif bold">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-share"></i>
+            <p>
+              Share
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('user.index')}} " class="nav-link @if(Request::segment(1) == 'user' && Request::segment(2)=='index' ) active @endif bold">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Edit Share</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

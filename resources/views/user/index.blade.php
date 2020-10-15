@@ -42,7 +42,6 @@
                     <th>Serial</th>
                     <th>User Name</th>
                     <th>Email</th>
-                    <th>Total Share</th>
                     <th>Share</th>
                     <th>Total Receivable</th>
                     <th>Total Paid</th>
@@ -58,7 +57,6 @@
                       <td>{{$serial++}}</td>
                       <td>{{$user->name}}</td>
                       <td>{{$user->email}}</td>
-                      <td>{{$user->total_share}}</td>
                       <td>{{$user->share}}</td>
                       <td>{{$user->total_receivable}}</td>
                       <td>{{$user->total_paid}}</td>

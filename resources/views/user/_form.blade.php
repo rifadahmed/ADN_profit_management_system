@@ -21,10 +21,6 @@
 </div>
     <div class="row">
         <div class="form-group col-md-6">
-            <label for="">Total Number Share * @if ($errors->has('total_share')) <small class="text-danger"> [ {{ $errors->first('total_share') }} ] </small>@endif</label>
-            <input type="text" name="total_share" class="form-control" id="total_share" placeholder="Total Share" value="{{ old('total_share',isset($data) ? $data->total_share : null ) }}">
-        </div>
-        <div class="form-group col-md-6">
             <label for="">Share By Own * @if ($errors->has('share')) <small class="text-danger"> [ {{ $errors->first('share') }} ] </small>@endif</label>
             <input type="text" name="share" class="form-control" id="" placeholder="Share " value="{{ old('share',isset($data) ? $data->share : null ) }}">
         </div>
