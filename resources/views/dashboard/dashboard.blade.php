@@ -79,6 +79,19 @@
               <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
+
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{$total_project}}<sup style="font-size: 20px"></sup></h3>
+                <p>Outstanding</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-tasks"></i>
+              </div>
+              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+            </div>
+          </div>
           <!-- ./col -->
           <!-- <div class="col-lg-3 col-6">
 
@@ -120,15 +133,5 @@
 
 @push('script')
     {{-- Custom Scripts--}}
-    <script src={{asset("app-assets/js/scripts/dashboard-modern.js")}}></script>
-    <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
-    <script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
-    <script src="{{asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-    <script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
-    <script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
-    <script src="{{asset('plugins/moment/moment.min.js')}}"></script>
-    <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
-    <script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-    <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
-    <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+
 @endpush

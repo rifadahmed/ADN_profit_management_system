@@ -13,10 +13,6 @@ class UserController extends Controller
     public function index()
     {
 
-
-
-
-
         $users=User::all();
         foreach($users as $user)
         {
@@ -55,7 +51,6 @@ class UserController extends Controller
         $user->share=$request->share;
         $user->total_share=$request->total_share;
         $user->email=$request->email;
-
         $user->password=Hash::make($request->password);
         $user->created_by = Auth::User()->name;
         $user->save();

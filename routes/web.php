@@ -6,6 +6,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\DisburshmentController;
+use App\Http\Controllers\SettingsController;
 // use App\Http\Middleware\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,8 @@ Route::get('/list', function () {
         Route::post('/disburshment/update/{id}', [DisburshmentController::class, 'update'])->name('disburshment.update');
         Route::get('/disburshment/show/{id}',[DisburshmentController::class,'show'])->name('disburshment.show');
 
+        Route::get('setting/show/', [SettingsController::class, 'show'])->name('settings.show');
+        Route::post('setting/update/{id}', [SettingsController::class, 'update'])->name('settings.update');
 
       });
 
