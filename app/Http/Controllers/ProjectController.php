@@ -13,15 +13,6 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        // $title="List of projects";
-        // $n = 1;
-        // $projects = Project::all()->desc();
-        // return view('project.index')->with([
-        //     'projects' => $projects,
-        //     'title' => $title,
-        //     'n'=> $n
-        // ]);
-
         $data['title']="List of projects";
 
         $projects = New Project();
@@ -46,7 +37,6 @@ class ProjectController extends Controller
             'lc_number' => 'required',
             'lc_value' => 'required',
             'forward_lc_value' => 'required',
-            // 'total_profit_margin' => 'required',
             'advanced_payment' => 'required',
             'outstanding_payment' => 'required',
             'freight_cost' => 'required',
@@ -85,14 +75,10 @@ class ProjectController extends Controller
         $post->profit_share_outstanding  = $request->profit_share_outstanding;
         $post->created_by = Auth::User()->name;
 
-
         $post->save();
-
-
 
          $shareholders=User::all();
          $total_share = Setting::all()->first()->value;
-
 
             foreach($shareholders as $shareholder){
                  $financial= new Financial;
@@ -101,13 +87,10 @@ class ProjectController extends Controller
                  $financial->share_percentage=((($post->total_profit_margin/ ($total_share))*($shareholder->share))*100)/$post->total_profit_margin;
                  $financial->amount=($post->total_profit_margin/ ($total_share))*($shareholder->share);
                  $financial->save();
-                //amount echo ($post->total_profit_margin/ ($shareholder->total_share))*($shareholder->share) ." ";
-                 //echo ((($post->total_profit_margin/ ($shareholder->total_share))*($shareholder->share))*100) ." ";
             }
 
             return redirect()->route('project.index');
     }
-
 
     public function show($id){
         $title = "Projects Details";
@@ -133,7 +116,6 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id){
 
-
                 $validateData = $request->validate([
                     'lc_or_tt_date' => 'required',
                     'style_number_and_order_session' => 'required',
@@ -155,7 +137,6 @@ class ProjectController extends Controller
                     'payment_record' => 'required',
                     'profit_share_outstanding' => 'required',
                 ]);
-
 
                 $post = Project::find($id);
                 $post->lc_or_tt_date  = $request->lc_or_tt_date ;

@@ -35,6 +35,17 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+
+                <div class="row">
+                  <form class="" method="Post" action="{{route('project.index')}}">
+                    <div class="row mr-5">
+                      <div class="col-md-4"><input type="date" class="mr-5 mb-5" /></div>
+                      <div class="col-md-4"><input type="date" class="mr-5 mb-5" /></div>
+                      <div class="col-md-4"><button type="submit" class="btn btn-sm btn-success" >Search</button>
+                    </div>
+                  </form>
+                </div>
+
                 <table id="" class="table table-bordered ">
                   <thead>
                   <tr>
