@@ -121,7 +121,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('settings.show')}} " class="nav-link @if(Request::segment(1) == 'settings' && Request::segment(2)=='show' ) menu-open @endif bold">
+              <a href="{{route('settings.edit')}} " class="nav-link @if(Request::segment(1) == 'settings' && Request::segment(2)=='show' ) menu-open @endif bold">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Edit Settings</p>
               </a>

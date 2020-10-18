@@ -7,6 +7,19 @@ use App\Models\Setting;
 
 class SettingsController extends Controller
 {
+
+    public function edit(){
+
+        $settings = Setting::where('key', 'total_share')->get();
+        foreach( $settings AS $settings){
+
+            $settings->key;
+        }
+        
+        return view('settings.edit', compact('settings'));
+
+    }
+
     public function update(Request $request, $id){
 
         $validateDate = $request->validate([
@@ -17,17 +30,6 @@ class SettingsController extends Controller
         $settings->value = $request->value;
         $settings->save();
 
-        return redirect()->route('settings.show');;
-    }
-
-
-
-    public function show(){
-
-        $settings = Setting::all()->first();
-        #return $settings;
-
-        return view('settings.show', compact('settings'));
-
+        return redirect()->route('settings.edit');;
     }
 }

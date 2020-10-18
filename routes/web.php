@@ -63,8 +63,8 @@ Route::get('/list', function () {
         Route::post('/disburshment/update/{id}', [DisburshmentController::class, 'update'])->name('disburshment.update');
         Route::get('/disburshment/show/{id}',[DisburshmentController::class,'show'])->name('disburshment.show');
 
-        Route::get('setting/show/', [SettingsController::class, 'show'])->name('settings.show');
-        Route::post('setting/update/{id}', [SettingsController::class, 'update'])->name('settings.update');
+        Route::get('/setting/edit/', [SettingsController::class, 'edit'])->name('settings.edit');
+        Route::post('/setting/update/{id}', [SettingsController::class, 'update'])->name('settings.update');
 
       });
 
