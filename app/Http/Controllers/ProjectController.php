@@ -13,7 +13,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $data['title']="List of projects";
+        $data['title']="List of Transaction";
 
         $projects = New Project();
         $projects = $projects->orderBy('id', 'DESC')->simplePaginate(2);
@@ -25,7 +25,7 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $data['title']="Add New Project";
+        $data['title']="Add New Transaction";
         return view('project.create', $data);
     }
 
@@ -78,7 +78,7 @@ class ProjectController extends Controller
         $post->save();
 
          $shareholders=User::all();
-         $total_share = Setting::all()->first()->value;
+         $total_share = Setting::where('key', 'total_share')->first();
 
             foreach($shareholders as $shareholder){
                  $financial= new Financial;
@@ -93,7 +93,7 @@ class ProjectController extends Controller
     }
 
     public function show($id){
-        $title = "Projects Details";
+        $title = "Transaction Details";
         $project = Project::find($id);
         $total_share = Setting::all()->first()->value;
         $shareholders = Financial::where('project_id',$id)->get();
@@ -162,7 +162,7 @@ class ProjectController extends Controller
 
                 $post->save();
 
-                $total_share = Setting::all()->first()->value;
+                $total_share = Setting::where('key', 'total_share')->first();
                 $shareholders = Financial::where('project_id',$id)->get();
 
                 foreach($shareholders as $shareholder){

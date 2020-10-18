@@ -123,7 +123,7 @@
             <li class="nav-item">
               <a href="{{route('settings.edit')}} " class="nav-link @if(Request::segment(1) == 'settings' && Request::segment(2)=='show' ) menu-open @endif bold">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Edit Settings</p>
+                <p>Total Share</p>
               </a>
             </li>
           </ul>

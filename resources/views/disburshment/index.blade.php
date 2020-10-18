@@ -62,8 +62,8 @@
                             <tr>
                               <td> {{$serial++}} </td>
                               <td>{{$disburshment->shareholder->name}}</td>
-                              <td>{{$disburshment->amount}}</td>
-                              <td>{{$disburshment->amount}}</td>
+                              <td>{{number_format(($disburshment->amount),2)}}</td>
+                              <td>{{$disburshment->date}}</td>
                               <td>{{$disburshment->remark}}</td>
                               <td>{{$disburshment->created_by ?$disburshment->created_by :"-----"}}</td>
                               <td>{{$disburshment->updated_by? $disburshment->updated_by : "-----"}}</td>

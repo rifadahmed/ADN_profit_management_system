@@ -10,12 +10,11 @@ class SettingsController extends Controller
 
     public function edit(){
 
-        $settings = Setting::where('key', 'total_share')->get();
-        foreach( $settings AS $settings){
+        $settings = Setting::where('key', 'total_share')->first();
+        // foreach( $settings AS $settings){
 
-            $settings->key;
-        }
-        
+        //     $settings->key;
+        // }
         return view('settings.edit', compact('settings'));
 
     }

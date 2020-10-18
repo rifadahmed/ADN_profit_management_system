@@ -25,7 +25,7 @@
           <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{$totalAmount}}</h3>
+                <h3>{{number_format($totalAmount, 2)}}</h3>
                 <p>Total Reciveable</p>
               </div>
               <div class="icon">
@@ -37,7 +37,7 @@
           <div class="col-lg-3 col-6">
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{$totalGet}}<sup style="font-size: 20px"></sup></h3>
+                <h3>{{number_format($totalGet, 2)}}<sup style="font-size: 20px"></sup></h3>
                 <p>Total Paid</p>
               </div>
               <div class="icon">
@@ -48,6 +48,21 @@
           </div>
 
 
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{number_format(($totalAmount - $totalGet), 2) }}<sup style="font-size: 20px"></sup></h3>
+                <p>Outstanding</p>
+              </div>
+              <div class="icon">
+                <i class="fab fa-bitcoin"></i>
+              </div>
+              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">
               <div class="inner">
@@ -74,18 +89,6 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>{{$totalAmount - $totalGet }}<sup style="font-size: 20px"></sup></h3>
-                <p>Outstanding</p>
-              </div>
-              <div class="icon">
-                <i class="fab fa-bitcoin"></i>
-              </div>
-              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
-            </div>
-          </div>
           <!-- ./col -->
           <!-- <div class="col-lg-3 col-6">
 
