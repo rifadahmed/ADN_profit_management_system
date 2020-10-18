@@ -16,7 +16,11 @@ class ProjectController extends Controller
         $data['title']="List of Transaction";
 
         $projects = New Project();
+        if(\request('from') != null && \request('to') != null){
+            $projects = $projects->whereBetween('lc_or_tt_date',[\request('from'),\request('to')]);
+        }
         $projects = $projects->orderBy('id', 'DESC')->paginate(2);
+        $projects = $projects->appends(request()->all());
         $data['projects']=$projects;
         $data['serial']    = 1;
         return view('project.index',$data);
