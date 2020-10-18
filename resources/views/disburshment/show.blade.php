@@ -40,7 +40,7 @@
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Amount:</b> <a class="float-right"> {{$disburshment->amount}}</a>
+                    <b>Amount:</b> <a class="float-right"> {{number_format(($disburshment->amount),2)}}</a>
                   </li>
                   <li class="list-group-item">
                     <b>Date:</b> <a class="float-right">{{$disburshment->date}}</a>

@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Project Details</h1>
+            <h1>{{$title , 'Transaction Detaisl'}}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard.dashboard')}}">Dashboard</a></li>
-              <li class="breadcrumb-item active">Project Details</li>
+              <li class="breadcrumb-item active">{{$title, 'Transaction Details'}}</li>
             </ol>
           </div>
         </div>
@@ -36,7 +36,7 @@
                     </div>
 
 
-                    <strong><p class="text-muted text-center">Shareholder Project Details</p></strong>
+                    <strong><p class="text-muted text-center">Shareholder {{$title}}</p></strong>
 
                     <ul class="list-group list-group-unbordered mb-3">
 
@@ -48,25 +48,25 @@
                         <b> Style Number Order Session:</b> <a class="float-right"> {{$project['style_number_and_order_session']}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> LC Number:</b> <a class="float-right"> {{$project['lc_number']}}</a>
+                        <b> LC Number:</b> <a class="float-right"> {{number_format(($project['lc_number']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Lc value:</b> <a class="float-right"> {{$project['lc_value']}}</a>
+                        <b> Lc value:</b> <a class="float-right"> {{number_format(($project['lc_value']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Lc value:</b> <a class="float-right"> {{$project['forward_lc_value']}}</a>
+                        <b> Forward Lc value:</b> <a class="float-right"> {{number_format(($project['forward_lc_value']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Total Profit Margin:</b> <a class="float-right"> {{$project['total_profit_margin']}}</a>
+                        <b> Total Profit Margin:</b> <a class="float-right"> {{number_format(($project['total_profit_margin']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Advanced Payment:</b> <a class="float-right"> {{$project['advanced_payment']}}</a>
+                        <b> Advanced Payment:</b> <a class="float-right"> {{number_format(($project['advanced_payment']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Outstanding Payment:</b> <a class="float-right"> {{$project['outstanding_payment']}}</a>
+                        <b> Outstanding Payment:</b> <a class="float-right"> {{number_format(($project['outstanding_payment']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Freight Cost:</b> <a class="float-right"> {{$project['freight_cost']}}</a>
+                        <b> Freight Cost:</b> <a class="float-right"> {{number_format(($project['freight_cost']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
                         <b> Shipment Mode:</b> <a class="float-right"> {{$project['shipment_mode']}}</a>
@@ -81,13 +81,13 @@
                         <b> Final Invoice Of Buyer:</b> <a class="float-right"> {{$project['final_invoice_amount_of_buyer']}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Amount Recieved:</b> <a class="float-right"> {{$project['amount_recieved']}}</a>
+                        <b> Amount Recieved:</b> <a class="float-right"> {{number_format(($project['amount_recieved']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Profit Share With Shareholder:</b> <a class="float-right"> {{$project['profits_shared_with_shareholders']}}</a>
+                        <b> Profit Share With Shareholder:</b> <a class="float-right"> {{number_format(($project['profits_shared_with_shareholders']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Main Acoount Balanced:</b> <a class="float-right"> {{$project['main_account_balaced_after_profit']}}</a>
+                        <b> Main Acoount Balanced:</b> <a class="float-right"> {{number_format(($project['main_account_balaced_after_profit']), 2)}}</a>
                       </li>
                       <li class="list-group-item">
                         <b> Payment Method:</b> <a class="float-right"> {{$project['payment_method']}}</a>
@@ -96,10 +96,8 @@
                         <b> Payment Record:</b> <a class="float-right"> {{$project['payment_record']}}</a>
                       </li>
                       <li class="list-group-item">
-                        <b> Profit Share Outstanding:</b> <a class="float-right"> {{$project['profit_share_outstanding']}}</a>
+                        <b> Profit Share Outstanding:</b> <a class="float-right"> {{number_format(($project['profit_share_outstanding']), 2)}}</a>
                       </li>
-
-
 
                       <li class="list-group-item">
                         <b> Created By:</b> <a class="float-right"> {{$project['created_by'] }}</a>
@@ -114,9 +112,6 @@
                         <b> Updated At:</b> <a class="float-right"> {{$project['updated_at']}}</a>
                       </li>
 
-
-
-
                     </ul>
                     <a href="{{route('project.index')}}" class="btn btn-primary btn-block align-center">Go back</a>
                   </div>
@@ -129,7 +124,7 @@
                   <tr>
                     <th>Name</th>
                     <th>Amount</th>
-                    <th>Total Share</th>
+                    <th>Share / Total Share</th>
 
                   </tr>
                   </thead>
@@ -138,8 +133,8 @@
                         @foreach($shareholders AS $shareholder)
                           <tr>
                             <td>{{$shareholder->shareholder_name->name}}</td>
-                            <td>{{$shareholder->amount}}</td>
-                            <td>{{$shareholder->share_percentage}} %</td>
+                            <td>{{number_format(($shareholder->amount), 2)}}</td>
+                            <td>{{$shareholder->each_person_share->share}} / {{$total_share}}</td>
 
                           </tr>
                         @endforeach

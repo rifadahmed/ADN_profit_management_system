@@ -65,9 +65,9 @@
 
           <li class="nav-item has-treeview @if(Request::segment(1) == 'project' && Request::segment(2)=='index' ||Request::segment(1) == 'project' && Request::segment(2)=='create' ||Request::segment(1) == 'project' && Request::segment(2)=='edit' ) menu-open @endif bold ">
             <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-tasks"></i>
+             <i class="nav-icon fas fa-coins"></i>
               <p>
-                Project
+                Transaction
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -75,13 +75,13 @@
               <li class="nav-item">
                 <a href="{{route('project.index')}} " class="nav-link @if(Request::segment(1) == 'project' && Request::segment(2)=='index' ) active @endif bold">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Project List</p>
+                  <p>Transaction List</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href=" {{route('project.create')}} " class="nav-link @if(Request::segment(1) == 'project' && Request::segment(2)=='create' ) active @endif bold">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Project</p>
+                  <p>Add Transaction</p>
                 </a>
               </li>
             </ul>
@@ -111,19 +111,19 @@
           </ul>
         </li>
 
-        <li class="nav-item has-treeview @if(Request::segment(1) == 'user' && Request::segment(2)=='index' ||Request::segment(1) == 'user' && Request::segment(2)=='create' ||Request::segment(1) == 'user' && Request::segment(2)=='edit' ) menu-open @endif bold">
+        <li class="nav-item has-treeview @if(Request::segment(1) == 'settings' && Request::segment(2)=='show' ) menu-open @endif bold">
           <a href="#" class="nav-link ">
             <i class="nav-icon fas fa-share"></i>
             <p>
-              Share
+              Settings
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('user.index')}} " class="nav-link @if(Request::segment(1) == 'user' && Request::segment(2)=='index' ) active @endif bold">
+              <a href="{{route('settings.edit')}} " class="nav-link @if(Request::segment(1) == 'settings' && Request::segment(2)=='show' ) menu-open @endif bold">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Edit Share</p>
+                <p>Total Share</p>
               </a>
             </li>
           </ul>

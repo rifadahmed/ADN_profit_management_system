@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data['total_shareholder']=count(User::all());
+        $data['total_shareholder']=count(User::where('user_role', 'shareholder')->get());
         $data['total_project']=count(Project::all());
 
         $id= Auth::user()->id;

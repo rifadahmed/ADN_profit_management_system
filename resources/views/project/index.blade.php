@@ -35,6 +35,18 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+
+                <div class="row">
+                  <form class="" method="Post" action="{{route('project.index')}}">
+                    <div class="row mr-5">
+                      <div class="col-md-4"><input type="date" name="from_date" class="mr-5 mb-5" /></div>
+                      <div class="col-md-4"><input type="date" name="to_date"class="mr-5 mb-5" /></div>
+                      <div class="col-md-4"><button type="submit" id="filter" name="filter" class="btn btn-sm btn-success" >Search</button>
+                      {{-- <div class="col-md-4"><button type="submit" id="refresh" name="refresh" class="btn btn-sm btn-success" >Refresh</button> --}}
+                    </div>
+                  </form>
+                </div>
+
                 <table id="" class="table table-bordered ">
                   <thead>
                   <tr>
@@ -55,8 +67,8 @@
                             <td>{{$serial++}}</td>
                             <td>{{$eachProject['lc_or_tt_date']}}</td>
                             <td>{{$eachProject['style_number_and_order_session']}}</td>
-                            <td>{{$eachProject['profits_shared_with_shareholders']}}</td>
-                            <td>{{$eachProject['total_profit_margin']}}</td>
+                            <td>{{number_format(($eachProject['profits_shared_with_shareholders']), 2)}}</td>
+                            <td>{{number_format(($eachProject['total_profit_margin']), 2)}}</td>
                             <td>{{$eachProject['created_by'] ?$eachProject['created_by'] : "-----"}}</td>
                             <td>{{$eachProject['updated_by'] ? $eachProject['updated_by']: "-----"}}</td>
                             <td>
@@ -69,6 +81,7 @@
                     @endif
                   </tbody>
                 </table>
+                {{ csrf_field() }}
               </div>
             </div>
             <div class="text-center">{{$projects->render()}}</div>

@@ -15,13 +15,13 @@
     <input type="password" name="password" class="form-control" id="" placeholder="Password" value="">
   </div>
   <div class="form-group col-md-6">
-    <label for="">Confirm * Password @if ($errors->has('confirm_password')) <small class="text-danger"> [ {{ $errors->first('confirm_password') }} ] </small>@endif</label>
+    <label for="">Confirm Password * @if ($errors->has('confirm_password')) <small class="text-danger"> [ {{ $errors->first('confirm_password') }} ] </small>@endif</label>
     <input type="password" name="confirm_password" class="form-control" id="" placeholder="confirm_password" value="">
   </div>
 </div>
     <div class="row">
         <div class="form-group col-md-6">
-            <label for="">Share By Own * @if ($errors->has('share')) <small class="text-danger"> [ {{ $errors->first('share') }} ] </small>@endif</label>
+            <label for="">Share By Ownership * @if ($errors->has('share')) <small class="text-danger"> [ {{ $errors->first('share') }} ] </small>@endif</label>
             <input type="text" name="share" class="form-control" id="" placeholder="Share " value="{{ old('share',isset($data) ? $data->share : null ) }}">
         </div>
     </div>

@@ -7,21 +7,13 @@ use App\Models\Project;
 use App\Models\Financial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Setting;
 
 class ProjectController extends Controller
 {
     public function index()
     {
-        // $title="List of projects";
-        // $n = 1;
-        // $projects = Project::all()->desc();
-        // return view('project.index')->with([
-        //     'projects' => $projects,
-        //     'title' => $title,
-        //     'n'=> $n
-        // ]);
-
-        $data['title']="List of projects";
+        $data['title']="List of Transaction";
 
         $projects = New Project();
         $projects = $projects->orderBy('id', 'DESC')->simplePaginate(2);
@@ -29,9 +21,11 @@ class ProjectController extends Controller
         $data['serial']    = 1;
         return view('project.index',$data);
     }
+
+
     public function create()
     {
-        $data['title']="Add New Project";
+        $data['title']="Add New Transaction";
         return view('project.create', $data);
     }
 
@@ -43,7 +37,6 @@ class ProjectController extends Controller
             'lc_number' => 'required',
             'lc_value' => 'required',
             'forward_lc_value' => 'required',
-            'total_profit_margin' => 'required',
             'advanced_payment' => 'required',
             'outstanding_payment' => 'required',
             'freight_cost' => 'required',
@@ -66,7 +59,7 @@ class ProjectController extends Controller
         $post->lc_number  = $request->lc_number ;
         $post->lc_value  = $request->lc_value ;
         $post->forward_lc_value  = $request->forward_lc_value ;
-        $post->total_profit_margin  = $request->total_profit_margin ;
+        $post->total_profit_margin  = ($request->lc_value - $request->forward_lc_value);
         $post->advanced_payment  = $request->advanced_payment ;
         $post->outstanding_payment  = $request->outstanding_payment ;
         $post->freight_cost  = $request->freight_cost ;
@@ -82,38 +75,36 @@ class ProjectController extends Controller
         $post->profit_share_outstanding  = $request->profit_share_outstanding;
         $post->created_by = Auth::User()->name;
 
-
         $post->save();
 
-
-
          $shareholders=User::all();
+         $total_share = Setting::where('key', 'total_share')->first();
 
             foreach($shareholders as $shareholder){
                  $financial= new Financial;
                  $financial->project_id=$post->id;
                  $financial->shareholder_id=$shareholder->id;
-                 $financial->share_percentage=((($post->profits_shared_with_shareholders/ ($shareholder->total_share))*($shareholder->share))*100)/$post->profits_shared_with_shareholders;
-                 $financial->amount=($post->profits_shared_with_shareholders/ ($shareholder->total_share))*($shareholder->share);
+                 $financial->share_percentage=((($post->total_profit_margin/ ($total_share))*($shareholder->share))*100)/$post->total_profit_margin;
+                 $financial->amount=($post->total_profit_margin/ ($total_share))*($shareholder->share);
                  $financial->save();
-                //amount echo ($post->profits_shared_with_shareholders/ ($shareholder->total_share))*($shareholder->share) ." ";
-                 //echo ((($post->profits_shared_with_shareholders/ ($shareholder->total_share))*($shareholder->share))*100) ." ";
             }
-
 
             return redirect()->route('project.index');
     }
 
-
     public function show($id){
-        $title = "Projects Details";
+        $title = "Transaction Details";
         $project = Project::find($id);
-        $shareholders=Financial::where('project_id',$id)->get();
-        return view('project.show')->with([
-            'project'=> $project,
-            'shareholders'=> $shareholders,
-            'title'=>$title
-        ]);
+        $total_share = Setting::all()->first()->value;
+        $shareholders = Financial::where('project_id',$id)->get();
+
+        $data['title'] = $title;
+        $data['project'] = $project;
+        $data['total_share'] = $total_share;
+        $data['shareholders'] = $shareholders;
+
+        return view('project.show', $data);
+
     }
 
     public function edit($id)
@@ -125,14 +116,13 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id){
 
-         
                 $validateData = $request->validate([
                     'lc_or_tt_date' => 'required',
                     'style_number_and_order_session' => 'required',
                     'lc_number' => 'required',
                     'lc_value' => 'required',
                     'forward_lc_value' => 'required',
-                    'total_profit_margin' => 'required',
+                    // 'total_profit_margin' => 'required',
                     'advanced_payment' => 'required',
                     'outstanding_payment' => 'required',
                     'freight_cost' => 'required',
@@ -148,14 +138,13 @@ class ProjectController extends Controller
                     'profit_share_outstanding' => 'required',
                 ]);
 
-
                 $post = Project::find($id);
                 $post->lc_or_tt_date  = $request->lc_or_tt_date ;
                 $post->style_number_and_order_session  = $request->style_number_and_order_session ;
                 $post->lc_number  = $request->lc_number ;
                 $post->lc_value  = $request->lc_value ;
                 $post->forward_lc_value  = $request->forward_lc_value ;
-                $post->total_profit_margin  = $request->total_profit_margin ;
+                $post->total_profit_margin  = ($request->lc_value - $request->forward_lc_value);
                 $post->advanced_payment  = $request->advanced_payment ;
                 $post->outstanding_payment  = $request->outstanding_payment ;
                 $post->freight_cost  = $request->freight_cost ;
@@ -171,15 +160,19 @@ class ProjectController extends Controller
                 $post->profit_share_outstanding  = $request->profit_share_outstanding;
                 $post->updated_by = Auth::User()->name;
 
-
                 $post->save();
 
+                $total_share = Setting::where('key', 'total_share')->first();
+                $shareholders = Financial::where('project_id',$id)->get();
 
-                $shareholders=Financial::where('project_id',$id)->get();
                 foreach($shareholders as $shareholder){
-                    $shareholder->amount=($request->profits_shared_with_shareholders/$shareholder->total_amount->total_share)*$shareholder->total_amount->share;
-                    $shareholder->share_percentage=((($request->profits_shared_with_shareholders/$shareholder->total_amount->total_share)*$shareholder->total_amount->share)*100)/$request->profits_shared_with_shareholders;
+
+                    $each_user_shere = $shareholder->each_person_share->share;
+
+                    $shareholder->amount=($post->total_profit_margin/$total_share)*$each_user_shere;
+                    $shareholder->share_percentage=((($post->total_profit_margin/$total_share)*$each_user_shere)*100)/$post->total_profit_margin;
                     $shareholder->save();
+
                 }
                return redirect('/project/index');
 

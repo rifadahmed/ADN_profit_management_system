@@ -58,12 +58,12 @@
                       <td>{{$user->name}}</td>
                       <td>{{$user->email}}</td>
                       <td>{{$user->share}}</td>
-                      <td>{{$user->total_receivable}}</td>
-                      <td>{{$user->total_paid}}</td>
+                      <td>{{number_format(($user->total_receivable), 2)}}</td>
+                      <td>{{number_format(($user->total_paid), 2)}}</td>
                       <td>{{ $user->created_by ?$user->created_by :"-----" }}</td>
                       <td>{{$user->updated_by ? $user->updated_by :"-----"}}</td>
                       <td><a href="{{route('user.edit',$user->id)}}" class="btn btn-xs btn-warning">Edit</a>
-                           <a class='btn btn-xs btn-default' href="{{route('user.show',$user->id)}}">Details</a>
+                           {{-- <a class='btn btn-xs btn-default' href="{{route('user.show',$user->id)}}">Details</a> --}}
                       </td>
                   </tr>
                     @endforeach
