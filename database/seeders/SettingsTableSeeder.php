@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SettingsTableSeeder extends Seeder
 {
@@ -12,11 +13,11 @@ class SettingsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        DB:table('settings')->insert([
+    {      
+        DB::table('settings')->insert([
 
             'key' => 'total_share',
-            'value' => 9
+            'value' => '9'
 
         ]);
     }

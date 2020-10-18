@@ -37,8 +37,8 @@
             <div class="card-body">
 
                 <form class="mb-2">
-                    <div class="row mr-5">
-                        <div class="col-md-3 text-right">
+                    <div class="row">
+                        <div class="col-md-3 mt-1 text-right">
                             <label for="">Search on LC/TT Date</label>
                         </div>
                         <div class="col-md-3">
@@ -47,7 +47,7 @@
                         <div class="col-md-3">
                             <input type="date" value="{{ request('to') }}" name="to" class="form-control" required />
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mt-1">
                             <button type="submit" id="filter" class="btn btn-sm btn-success">Search</button>
                         </div>
                     </div>

@@ -21,8 +21,8 @@ class ProjectController extends Controller
         }
         $projects = $projects->orderBy('id', 'DESC')->paginate(2);
         $projects = $projects->appends(request()->all());
+        // dd($projects);
         $data['projects']=$projects;
-        $data['serial']    = 1;
         return view('project.index',$data);
     }
 
@@ -81,7 +81,7 @@ class ProjectController extends Controller
 
         $post->save();
 
-         $shareholders=User::all();
+         $shareholders=User::where('user_role', 'shareholder')->get();
          $total_share_str = Setting::where('key', 'total_share')->first();
          //return $total_share_str->value;
          $total_share = (int)$total_share_str->value;
@@ -103,7 +103,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $total_share_str = Setting::where('key', 'total_share')->first();
         $total_share = (int)$total_share_str->value;
-        $shareholders = Financial::where('project_id',$id)->get();
+        $shareholders = Financial::with(['each_person_share', 'total_amount'])->where('project_id',$id)->get();
 
         $data['title'] = $title;
         $data['project'] = $project;
@@ -170,7 +170,7 @@ class ProjectController extends Controller
 
                 $total_share_str = Setting::where('key', 'total_share')->first();
                 $total_share = (int)$total_share_str->value;
-                $shareholders = Financial::where('project_id',$id)->get();
+                $shareholders = Financial::with(['each_person_share'])->where('project_id',$id)->get();
 
                 foreach($shareholders as $shareholder){
 

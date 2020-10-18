@@ -76,7 +76,6 @@ class UserController extends Controller
         $user=  User::find($id);
         $user->name=$request->name;
         $user->share=$request->share;
-        $user->total_share=$request->total_share;
         $user->email=$request->email;
         if(isset($request->password)){
             $user->password=Hash::make($request->password);
