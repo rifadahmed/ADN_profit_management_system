@@ -56,8 +56,7 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
+                        @if(count($disburshments) > 0)
                             @foreach ($disburshments as $disburshment)
                             <tr>
                               <td> {{$serial++}} </td>
@@ -71,6 +70,7 @@
                               <a class="btn btn-xs btn-default" href="{{route('disburshment.show',$disburshment->id)}}"> See more</a></td>
                           </tr>
                             @endforeach
+                        @endif
                     </tbody>
                 </table>
               </div>

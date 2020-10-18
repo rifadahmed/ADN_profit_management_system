@@ -81,11 +81,12 @@
                     @endif
                   </tbody>
                 </table>
-                {{ csrf_field() }}
+                {{ $projects->links() }}
               </div>
             </div>
-            <div class="text-center">{{$projects->render()}}</div>
+            
         </div>
+        
       </div>
 
 

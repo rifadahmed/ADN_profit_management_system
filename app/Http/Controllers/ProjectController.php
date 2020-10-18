@@ -16,7 +16,7 @@ class ProjectController extends Controller
         $data['title']="List of Transaction";
 
         $projects = New Project();
-        $projects = $projects->orderBy('id', 'DESC')->simplePaginate(2);
+        $projects = $projects->orderBy('id', 'DESC')->paginate(2);
         $data['projects']=$projects;
         $data['serial']    = 1;
         return view('project.index',$data);
@@ -78,7 +78,9 @@ class ProjectController extends Controller
         $post->save();
 
          $shareholders=User::all();
-         $total_share = Setting::where('key', 'total_share')->first();
+         $total_share_str = Setting::where('key', 'total_share')->first();
+         //return $total_share_str->value;
+         $total_share = (int)$total_share_str->value;
 
             foreach($shareholders as $shareholder){
                  $financial= new Financial;
@@ -95,7 +97,8 @@ class ProjectController extends Controller
     public function show($id){
         $title = "Transaction Details";
         $project = Project::find($id);
-        $total_share = Setting::all()->first()->value;
+        $total_share_str = Setting::where('key', 'total_share')->first();
+        $total_share = (int)$total_share_str->value;
         $shareholders = Financial::where('project_id',$id)->get();
 
         $data['title'] = $title;
@@ -122,7 +125,6 @@ class ProjectController extends Controller
                     'lc_number' => 'required',
                     'lc_value' => 'required',
                     'forward_lc_value' => 'required',
-                    // 'total_profit_margin' => 'required',
                     'advanced_payment' => 'required',
                     'outstanding_payment' => 'required',
                     'freight_cost' => 'required',
@@ -162,7 +164,8 @@ class ProjectController extends Controller
 
                 $post->save();
 
-                $total_share = Setting::where('key', 'total_share')->first();
+                $total_share_str = Setting::where('key', 'total_share')->first();
+                $total_share = (int)$total_share_str->value;
                 $shareholders = Financial::where('project_id',$id)->get();
 
                 foreach($shareholders as $shareholder){

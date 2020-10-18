@@ -15,9 +15,10 @@ class DisburshmentController extends Controller
         $data['disburshments']=Disburshment::all();
 
         $disburshments = New Disburshment();
-        $disburshments = $disburshments->orderBy('id', 'DESC')->simplePaginate(5);
-        $data['disburshments']=$disburshments;
-        $data['serial']    = 1;
+        $disburshments = $disburshments->with(['shareholder'])->orderBy('id', 'DESC')->paginate(5);
+        // dd($disburshments);
+        $data['disburshments'] = $disburshments;
+        $data['serial'] = 1;
          return view('disburshment.index',$data);
         // return "hello";
     }
@@ -25,7 +26,9 @@ class DisburshmentController extends Controller
     {
         // $user=isset(Auth::user()->id);
         // return $user;
-        $data['shareholders']=User::all();
+        // return $user;
+        $data['shareholders'] = User::where('user_role', 'shareholder')->get();
+
         return view('disburshment.create',$data);
     }
 
@@ -51,12 +54,12 @@ class DisburshmentController extends Controller
     {
 
         $data['title'] = "Edit Disburshment";
-        $data['data']=Disburshment::find($id);
-        $data['shareholders']=User::all();
+        $data['data']= Disburshment::find($id);
+        $data['shareholders']=User::where('user_role', 'shareholder');
         return view('disburshment.edit', $data);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'amount'=>'required|regex:/^\d+(\.\d{1,2})?$/',
@@ -69,7 +72,6 @@ class DisburshmentController extends Controller
         $disburshment->shareholder_id = $request->shareholder_id;
         $disburshment->updated_by = Auth::User()->name;
 
-       //
         $disburshment->save();
         return redirect()->route('disburshment.index');
     }

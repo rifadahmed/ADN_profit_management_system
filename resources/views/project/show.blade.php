@@ -132,10 +132,9 @@
                     @if(count($shareholders) > 0)
                         @foreach($shareholders AS $shareholder)
                           <tr>
-                            <td>{{$shareholder->shareholder_name->name}}</td>
-                            <td>{{number_format(($shareholder->amount), 2)}}</td>
-                            <td>{{$shareholder->each_person_share->share}} / {{$total_share}}</td>
-
+                            <td>{{ isset($shareholder->shareholder_name->name)? $shareholder->shareholder_name->name:null }}</td>
+                            <td>{{number_format(( isset( $shareholder->amount) ? $shareholder->amount: 0), 2)}}</td>
+                            <td>{{ isset($shareholder->each_person_share->share) ? $shareholder->each_person_share->share:null }} / {{((int)$total_share)}}</td>
                           </tr>
                         @endforeach
                     @endif
